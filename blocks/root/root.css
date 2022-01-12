@@ -1,0 +1,9 @@
+.root {
+  min-width: 320px;
+  min-height: 1000px; /*убрать*/
+  margin: 0 auto;
+  background: #000;
+  font-family: /*'inter',*/ 'Arial', 'Helvetica', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
