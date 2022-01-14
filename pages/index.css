@@ -2,7 +2,7 @@
 @import url(../vendor/normalize.css);
 
 /* шрифты */
-/*@import url(../vendor/fonts/fonts.css);*/
+@import url(../vendor/fonts/fonts.css);
 
 /* корневые стили */
 @import url(../blocks/root/root.css);
@@ -15,5 +15,25 @@
 /* main */
 @import url(../blocks/content/content.css);
 
+/* profile */
+@import url(../blocks/profile/profile.css);
+@import url(../blocks/profile/__avatar/profile__avatar.css);
+@import url(../blocks/profile/__profile-info/profile__profile-info.css);
+@import url(../blocks/profile/__title-name/profile__title-name.css);
+@import url(../blocks/profile/__button-name/profile__button-name.css);
+@import url(../blocks/profile/__text/profile__text.css);
+@import url(../blocks/profile/__add-button/profile__add-button.css);
+
+/* elements */
+@import url(../blocks/elements/elements.css);
+
+/* element */
+@import url(../blocks/element/element.css);
+@import url(../blocks/element/__image/element__image.css);
+@import url(../blocks/element/__interaction/element__interaction.css);
+@import url(../blocks/element/__text/element__text.css);
+@import url(../blocks/element/__button-view/element__button-view.css);
+
 /* footer */
 @import url(../blocks/footer/footer.css);
+@import url(../blocks/footer/__text/footer__text.css);

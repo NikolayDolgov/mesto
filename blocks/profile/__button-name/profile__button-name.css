@@ -1,0 +1,12 @@
+.profile__button-name {
+  margin-top: 15px;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  box-sizing: border-box;
+  border: 1px solid #FFF;
+  background-image: url("../../../images/button-pen.svg");
+  background-repeat: no-repeat;
+  background-color: transparent;
+  background-position: center;
+}
