@@ -5,4 +5,27 @@
   background-repeat: no-repeat;
   background-size: 100%;
   margin-bottom: 41px;
+  object-fit: cover;
+}
+
+.header__logo:hover {
+  opacity: .6;
+}
+
+@media all and (max-width: 373px) {
+  .header__logo {
+    width: 120px;
+    height: 28px;
+    margin-left: 13.5px;
+    margin-bottom: 36.5px;
+  }
+}
+
+@media all and (max-width: 320px) {/*373*/
+  .header__logo {
+    width: 103.5px;
+    height: 24.5px;
+    margin-left: 27px;
+    margin-bottom: 31.5px;
+  }
 }

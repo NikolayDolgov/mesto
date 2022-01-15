@@ -4,19 +4,27 @@
     <link rel="stylesheet" href="./pages/index.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mesto</title>
+    <title>Место</title>
   </head>
   <body>
     <div class="root">
       <header class="header">
         <a href="#" class="header__logo"></a>
-        <div class="header__line"></div>
       </header>
       <main class="content">
+        <section class="popup">
+          <form class="popup__container">
+            <h2 class="popup__heading">Редактировать профиль</h2>
+            <input type="text" class="popup__input">
+            <input type="text" class="popup__input">
+            <input type="submit" value="Сохранить" class="popup__button">
+            <div class="popup__close"></div>
+          </form>
+        </section>
         <section class="profile">
           <img src="./images/avatar.png" alt="Аватар" class="profile__avatar">
           <div class="profile__profile-info">
-            <p class="profile__title-name">Жак-Ив Кусто</p><!--Head?-->
+            <h2 class="profile__title-name">Жак-Ив Кусто</h2>
             <button class="profile__button-name"></button><!--class-->
             <p class="profile__text">Исследователь океана</p>
           </div>
@@ -27,42 +35,42 @@
             <img src="./images/karachevsky.png" alt="Карачевск" class="element__image">
             <div class="element__interaction">
               <p class="element__text">Карачевск</p><!--Head?-->
-              <button class="element__button-view"></button>
+              <button class="element__button-view element__button-view_disabled"></button>
             </div>
           </div>
           <div class="element">
             <img src="./images/elbrus.png" alt="Гора Эльбрус" class="element__image">
             <div class="element__interaction">
               <p class="element__text">Гора Эльбрус</p><!--Head?-->
-              <button class="element__button-view"></button>
+              <button class="element__button-view element__button-view_disabled"></button>
             </div>
           </div>
           <div class="element">
             <img src="./images/dombay.png" alt="Домбай" class="element__image">
             <div class="element__interaction">
               <p class="element__text">Домбай</p><!--Head?-->
-              <button class="element__button-view"></button>
+              <button class="element__button-view element__button-view_disabled"></button>
             </div>
           </div>
           <div class="element">
             <img src="./images/elbrus.png" alt="Гора Эльбрус" class="element__image">
             <div class="element__interaction">
               <p class="element__text">Гора Эльбрус</p><!--Head?-->
-              <button class="element__button-view"></button>
+              <button class="element__button-view element__button-view_disabled"></button>
             </div>
           </div>
           <div class="element">
             <img src="./images/dombay.png" alt="Домбай" class="element__image">
             <div class="element__interaction">
               <p class="element__text">Домбай</p><!--Head?-->
-              <button class="element__button-view"></button>
+              <button class="element__button-view element__button-view_disabled"></button>
             </div>
           </div>
           <div class="element">
             <img src="./images/karachevsky.png" alt="Карачевск" class="element__image">
             <div class="element__interaction">
               <p class="element__text">Карачаево-Черкесия</p><!--Head?-->
-              <button class="element__button-view"></button>
+              <button class="element__button-view element__button-view_disabled"></button>
             </div>
           </div>
         </section>
@@ -71,5 +79,6 @@
         <p class="footer__text">&copy; 2020 Mesto Russia</p>
       </footer>
     </div>
+    <script src="./scripts/index.js"></script>
   </body>
 </html>

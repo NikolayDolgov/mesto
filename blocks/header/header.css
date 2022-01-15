@@ -1,7 +1,23 @@
 .header {
   display: flex;
   flex-direction: column;
-  width: 880px;
+  max-width: 880px;
+  min-width: 320px;
+  width: 68.75%;
   margin: 0 auto;
   padding-top: 45px;
+  box-sizing: border-box;
+  border-bottom: 1px solid rgba(84, 84, 84, .7);
+}
+
+@media all and (max-width: 373px) {
+  .header {
+    padding-top: 35px;
+  }
+}
+
+@media all and (max-width: 320px) {/*373*/
+  .header {
+    padding-top: 28px;
+  }
 }

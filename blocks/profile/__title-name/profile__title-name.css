@@ -1,4 +1,7 @@
 .profile__title-name {
+  padding: 0;
+  border: 0;
+  background: transparent;
   margin: 0;
   font-style: normal;
   font-weight: 500;
