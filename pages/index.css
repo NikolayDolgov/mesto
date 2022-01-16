@@ -38,7 +38,7 @@
 /* elements */
 @import url(../blocks/elements/elements.css);
 @import url(../blocks/elements/__element/elements__element.css);
-@import url(../blocks/elements/__image/element__image.css);
+@import url(../blocks/elements/__img/element__img.css);
 @import url(../blocks/elements/__interaction/element__interaction.css);
 @import url(../blocks/elements/__text/element__text.css);
 @import url(../blocks/elements/__button-view/element__button-view.css);
