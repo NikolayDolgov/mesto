@@ -38,12 +38,12 @@
 /* elements */
 @import url(../blocks/elements/elements.css);
 @import url(../blocks/elements/__element/elements__element.css);
-@import url(../blocks/elements/__img/element__img.css);
-@import url(../blocks/elements/__interaction/element__interaction.css);
-@import url(../blocks/elements/__text/element__text.css);
-@import url(../blocks/elements/__button-view/element__button-view.css);
-@import url(../blocks/elements/__button-view/_view/element__button-view_active.css);
-@import url(../blocks/elements/__button-view/_view/element__button-view_disabled.css);
+@import url(../blocks/elements/__img/elements__img.css);
+@import url(../blocks/elements/__interaction/elements__interaction.css);
+@import url(../blocks/elements/__text/elements__text.css);
+@import url(../blocks/elements/__button-view/elements__button-view.css);
+@import url(../blocks/elements/__button-view/_view/elements__button-view_active.css);
+@import url(../blocks/elements/__button-view/_view/elements__button-view_disabled.css);
 
 /* footer */
 @import url(../blocks/footer/footer.css);

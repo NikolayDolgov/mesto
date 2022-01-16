@@ -1,4 +1,4 @@
-.element__button-view {
+.elements__button-view {
   margin-top: 5px;
   margin-left: 5px;
   padding: 0;
@@ -10,6 +10,6 @@
   background-position: center;
 }
 
-.element__button-view:hover {
+.elements__button-view:hover {
   opacity: .5;
 }
