@@ -2,7 +2,6 @@
   position: fixed;
   top: 0;
   left: 0;
-  /*display: flex; /* скрыть */
   display: none;
   justify-content: center;
   align-items: center;

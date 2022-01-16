@@ -1,0 +1,18 @@
+.photo {
+  max-width: 880px;
+  min-width: 320px;
+  width: 68.75%;
+  margin: 50px auto 0;
+}
+
+@media all and (max-width: 845px) {
+  .photo {
+    margin-top: 43px;
+  }
+}
+
+@media all and (max-width: 320px) {
+  .photo {
+    margin-top: 36px;
+  }
+}

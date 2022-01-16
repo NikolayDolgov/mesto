@@ -1,7 +1,21 @@
 .footer {
   margin: 66px auto 0;
   max-width: 880px;
-  min-width: 320px;
+  min-width: 282px;
   width: 68.75%;
   padding-bottom: 60px;
+}
+
+@media all and (max-width: 845px) {
+  .footer {
+    margin-top: 57px;
+    padding-bottom: 48px;
+  }
+}
+
+@media all and (max-width: 320px) {
+  .footer {
+    margin-top: 48px;
+    padding-bottom: 36px;
+  }
 }

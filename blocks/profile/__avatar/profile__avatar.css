@@ -1,6 +1,6 @@
 .profile__avatar {
-  width: 120px;
-  height: 120px;
+  min-width: 120px;
+  min-height: 120px;
   overflow: hidden;
   border-radius: 50%;
   border-color: #C4C4C4; /*нужен ли?*/

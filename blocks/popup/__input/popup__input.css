@@ -23,3 +23,30 @@
   line-height: 17px;
   color: #000;
 }
+
+@media all and (max-width: 845px) {
+  .popup__input {
+    min-width: 238px;
+    margin: 30px 22px 0;
+  }
+
+  .popup__input:first-of-type {
+    margin-top: 64px;
+  }
+}
+
+@media all and (max-width: 425px) {
+  .popup__input {
+    width: 84%;
+  }
+}
+
+@media all and (max-width: 320px) {
+  .popup__input {
+    width: 238px;
+  }
+
+  .popup__input:first-of-type {
+    margin-top: 75px;
+  }
+}

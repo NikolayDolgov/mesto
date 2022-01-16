@@ -1,6 +1,18 @@
 .profile__profile-info {
   display: grid;
   margin-left: 30px;
+  margin-right: 30px;
   grid-template-columns: minmax(1px, 1fr) 24px;
   gap: 16px 18px;
+}
+
+@media all and (max-width: 845px) {
+  .profile__profile-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 26px auto 0;
+    width: 282px;
+    gap: 14px 10px;
+  }
 }

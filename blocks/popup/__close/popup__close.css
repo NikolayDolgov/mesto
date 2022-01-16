@@ -13,3 +13,12 @@
 .popup__close:hover {
   opacity: .6;
 }
+
+@media all and (max-width: 845px) {
+  .popup__close {
+    top: -48px; /*проверить пиксель perfect*/
+    right: 0;
+    width: 20px;
+    height: 20px;
+  }
+}

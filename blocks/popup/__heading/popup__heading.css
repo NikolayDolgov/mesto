@@ -7,3 +7,27 @@
   line-height: 29px;
   color: #000;
 }
+
+@media all and (max-width: 845px) {
+  .popup__heading {
+    margin: 30px 0 0;
+    min-width: 238px;
+    font-size: 21px;
+    line-height: 24.5px;
+  }
+}
+
+@media all and (max-width: 425px) {
+  .popup__heading {
+    width: 84%;
+    font-size: 18px;
+    line-height: 22px;
+  }
+}
+
+@media all and (max-width: 320px) {
+  .popup__heading {
+    margin: 25px 0 0;
+    width: 238px;
+  }
+}

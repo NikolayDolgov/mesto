@@ -16,7 +16,7 @@
   }
 }
 
-@media all and (max-width: 320px) {/*373*/
+@media all and (max-width: 320px) {
   .header {
     padding-top: 28px;
   }

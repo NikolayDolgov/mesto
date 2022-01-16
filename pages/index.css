@@ -32,17 +32,18 @@
 @import url(../blocks/profile/__text/profile__text.css);
 @import url(../blocks/profile/__add-button/profile__add-button.css);
 
+/* photo */
+@import url(../blocks/photo/photo.css); 
+
 /* elements */
 @import url(../blocks/elements/elements.css);
-
-/* element */
-@import url(../blocks/element/element.css);
-@import url(../blocks/element/__image/element__image.css);
-@import url(../blocks/element/__interaction/element__interaction.css);
-@import url(../blocks/element/__text/element__text.css);
-@import url(../blocks/element/__button-view/element__button-view.css);
-@import url(../blocks/element/__button-view/_view/element__button-view_disabled.css);
-@import url(../blocks/element/__button-view/_view/element__button-view_active.css);
+@import url(../blocks/elements/__element/elements__element.css);
+@import url(../blocks/elements/__image/element__image.css);
+@import url(../blocks/elements/__interaction/element__interaction.css);
+@import url(../blocks/elements/__text/element__text.css);
+@import url(../blocks/elements/__button-view/element__button-view.css);
+@import url(../blocks/elements/__button-view/_view/element__button-view_active.css);
+@import url(../blocks/elements/__button-view/_view/element__button-view_disabled.css);
 
 /* footer */
 @import url(../blocks/footer/footer.css);

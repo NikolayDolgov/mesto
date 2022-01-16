@@ -21,7 +21,7 @@
   }
 }
 
-@media all and (max-width: 320px) {/*373*/
+@media all and (max-width: 320px) {
   .header__logo {
     width: 103.5px;
     height: 24.5px;

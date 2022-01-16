@@ -8,4 +8,16 @@
   font-size: 18px;
   line-height: 22px;
   color: #FFF;
+  width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@media all and (max-width: 845px) {
+  .profile__text {
+    text-align: center;
+    font-size: 14px;
+    line-height: 17px;
+  }
 }

@@ -4,5 +4,12 @@
   max-width: 880px;
   min-width: 320px;
   width: 68.75%;
-  margin: 40px auto;
+  margin: 40px auto 0;
+}
+
+@media all and (max-width: 845px) {
+  .profile {
+    flex-direction: column;
+    margin: 42px auto 0;
+  }
 }
