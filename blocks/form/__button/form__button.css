@@ -1,4 +1,4 @@
-.popup__button {
+.form__button {
   width: 358px;
   height: 50px;
   margin: 48px 0 37px;
@@ -14,12 +14,12 @@
   color: #FFF;
 }
 
-.popup__button:hover {
+.form__button:hover {
   opacity: 0.8;
 }
 
 @media all and (max-width: 845px) {
-  .popup__button {
+  .form__button {
     font-size: 16px;
     line-height: 18.5px;
     min-width: 238px;
@@ -27,7 +27,7 @@
 }
 
 @media all and (max-width: 425px) {
-  .popup__button {
+  .form__button {
     font-size: 14px;
     line-height: 17px;
     width: 84%;
@@ -35,7 +35,7 @@
 }
 
 @media all and (max-width: 320px) {
-  .popup__button {
+  .form__button {
     font-size: 14px;
     line-height: 17px;
     width: 238px;

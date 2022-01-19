@@ -9,6 +9,7 @@
   height: 100%;
 }
 
+/* увидел, буду искать решение */
 .popup::before {
   position: absolute;
   content: "";

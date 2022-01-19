@@ -3,6 +3,5 @@
   min-height: 120px;
   overflow: hidden;
   border-radius: 50%;
-  border-color: #C4C4C4; /*нужен ли?*/
   background-size: cover;
 }

@@ -1,4 +1,6 @@
 .popup__close {
+  padding: 0;
+  border: none;
   position: absolute;
   top: -40px; /*проверить пиксель perfect*/
   right: -40px;
@@ -22,3 +24,5 @@
     height: 20px;
   }
 }
+
+/* переделать форм и попап */

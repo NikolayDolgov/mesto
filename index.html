@@ -13,65 +13,67 @@
       </header>
       <main class="content">
         <section class="popup">
-          <form class="popup__container">
-            <h2 class="popup__heading">Редактировать профиль</h2>
-            <input type="text" class="popup__input">
-            <input type="text" class="popup__input">
-            <input type="submit" value="Сохранить" class="popup__button">
-            <div class="popup__close"></div>
-          </form>
+          <div class="popup__container">
+            <button type="button" aria-label="Закрыть" class="popup__close"></button>
+            <form name="change" class="form">
+              <h2 class="form__heading">Редактировать профиль</h2>
+              <input id="title" type="text" class="form__input">
+              <input id="text" type="text" class="form__input">
+              <button type="submit" aria-label="Сохранить" class="form__button">Сохранить</button>
+            </form>
+          </div>
         </section>
         <section class="profile">
           <img src="./images/avatar.png" alt="Аватар" class="profile__avatar">
           <div class="profile__profile-info">
             <h1 class="profile__title-name">Жак-Ив Кусто</h1>
-            <button class="profile__button-name"></button>
+            <button type="button" aria-label="Изменить" class="profile__button-name"></button>
             <p class="profile__text">Исследователь океана</p>
           </div>
-          <button class="profile__add-button"></button>
+          <button type="button" aria-label="Добавить" class="profile__add-button"></button>
         </section>
         <section class="photo">
           <ul class="elements">
-            <li class="elements__element">
+            <li class="elements__element"> <!--"Каждая карточка - это..."(переделаю по возможности)-->
               <img src="./images/karachevsky.png" alt="Карачевск" class="elements__img">
               <div class="elements__interaction">
                 <h2 class="elements__text">Карачевск</h2>
-                <button class="elements__button-view elements__button-view_disabled"></button>
+                <button type="button" aria-label="Оценить" class="elements__button-view"></button>
               </div>
             </li>
             <li class="elements__element">
               <img src="./images/elbrus.png" alt="Гора Эльбрус" class="elements__img">
               <div class="elements__interaction">
                 <h2 class="elements__text">Гора Эльбрус</h2>
-                <button class="elements__button-view elements__button-view_disabled"></button>
+                <button type="button" aria-label="Оценить" class="elements__button-view"></button>
               </div>
             </li>
             <li class="elements__element">
               <img src="./images/dombay.png" alt="Домбай" class="elements__img">
             <div class="elements__interaction">
               <h2 class="elements__text">Домбай</h2>
-              <button class="elements__button-view elements__button-view_disabled"></button>
+              <button type="button" aria-label="Оценить" type="button" type="button" class="elements__button-view"></button>
             </div>
             </li>
             <li class="elements__element">
               <img src="./images/elbrus.png" alt="Гора Эльбрус" class="elements__img">
             <div class="elements__interaction">
               <h2 class="elements__text">Гора Эльбрус</h2>
-              <button class="elements__button-view elements__button-view_disabled"></button>
+              <button type="button" aria-label="Оценить" class="elements__button-view"></button>
             </div>
             </li>
             <li class="elements__element">
               <img src="./images/dombay.png" alt="Домбай" class="elements__img">
             <div class="elements__interaction">
               <h2 class="elements__text">Домбай</h2>
-              <button class="elements__button-view elements__button-view_disabled"></button>
+              <button type="button" aria-label="Оценить" class="elements__button-view"></button>
             </div>
             </li>
             <li class="elements__element">
               <img src="./images/karachevsky.png" alt="Карачевск" class="elements__img">
             <div class="elements__interaction">
               <h2 class="elements__text">Карачаево-Черкесия</h2>
-              <button class="elements__button-view elements__button-view_disabled"></button>
+              <button type="button" aria-label="Оценить" class="elements__button-view"></button>
             </div>
             </li>
           </ul>
