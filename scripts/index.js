@@ -10,8 +10,8 @@ let profileText = profileInfo.querySelector('.profile__text');
 let popup = document.querySelector('.popup'); 
 let popupContainer = popup.querySelector('.popup__container'); 
 let popupClose = popupContainer.querySelector('.popup__close'); 
-let inputTitleName = popupContainer.querySelectorAll('#title')[0];
-let inputText = popupContainer.querySelectorAll('#text')[0];
+let inputTitleName = popupContainer.querySelector('#title');
+let inputText = popupContainer.querySelector('#text');
 
 //---------//
 // функции //
@@ -36,14 +36,10 @@ function outputPlaceholder () { // Функция для заполнения pl
 function formSubmitHandler(evt) { // Функция перезаписи profile__profile-info 
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
 
-  // блокирует перезапись пустым значением
-  if(inputTitleName.value !== '' && inputText !== '')
-  {
-    // Перезапись атрибута textContent
-    profileTitle.textContent = inputTitleName.value;
-    profileText.textContent = inputText.value;
-    closeForm ();
-  }
+  // Перезапись атрибута textContent
+  profileTitle.textContent = inputTitleName.value;
+  profileText.textContent = inputText.value;
+  closeForm ();
 }
 
 function closeForm() { // Функция закрытия формы
