@@ -1,4 +1,10 @@
 .elements__img {
+  min-width: 100%;/*Дублирование, чтобы картинка не схлопывалась при отсутствиии ссылки*/
+  max-width: 100%;
+  min-height: 282px;
+  max-height: 282px;
+  object-fit: cover;
+  object-position: center;
   background-color: #C4C4C4;
   border-radius: 10px 10px 0 0;
 }
