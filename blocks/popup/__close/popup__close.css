@@ -2,7 +2,7 @@
   padding: 0;
   border: none;
   position: absolute;
-  top: -40px; /*проверить пиксель perfect*/
+  top: -40px;
   right: -40px;
   width: 32px;
   height: 32px;
@@ -18,7 +18,7 @@
 
 @media all and (max-width: 845px) {
   .popup__close {
-    top: -48px; /*проверить пиксель perfect*/
+    top: -48px;
     right: 0;
     width: 20px;
     height: 20px;

@@ -1,0 +1,8 @@
+.popup__container_hidden {
+  background: transparent;
+  box-shadow: none;
+  width: 75vw;
+  max-height: calc(75vh + 25px);
+  min-width: 240px;
+  min-height: 299px;
+}

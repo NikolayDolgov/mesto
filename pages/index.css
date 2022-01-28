@@ -18,6 +18,7 @@
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/__container/popup__container.css);
+@import url(../blocks/popup/__container/_hidden/popup__container_hidden.css);
 @import url(../blocks/popup/__close/popup__close.css);
 
 /* form */
@@ -33,6 +34,12 @@
 @import url(../blocks/form-card/__heading/form-card__heading.css);
 @import url(../blocks/form-card/__input/form-card__input.css);
 @import url(../blocks/form-card/__button/form-card__button.css);
+
+/* figure */
+@import url(../blocks/figure/figure.css);
+@import url(../blocks/figure/_opened/figure_opened.css);
+@import url(../blocks/figure/__img/figure__img.css);
+@import url(../blocks/figure/__caption/figure__caption.css);
 
 /* profile */
 @import url(../blocks/profile/profile.css);

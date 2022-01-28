@@ -1,0 +1,19 @@
+.figure__img {
+  width: 75vw;
+  height: 75vh;
+  object-fit: cover;
+  object-position: center;
+}
+
+/*без данных медиазапросов мобильная весрия не соответсвует макету*/
+@media all and (max-width: 645px) {
+  .figure__img {
+   height: 350px;
+  }
+}
+
+@media all and (max-width: 320px) {
+  .figure__img {
+   height: 299px;
+  }
+}
