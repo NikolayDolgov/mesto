@@ -1,20 +1,5 @@
 .popup__container {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 430px;
-  background: #FFF;
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
-  border-radius: 10px;
-  z-index: 1;
-}
-
-@media all and (max-width: 845px) {
-  .popup__container {
-    margin-right: 19px;
-    margin-left: 19px;
-    min-width: 282px;
-  }
+  margin-right: 19px;
+  margin-left: 19px;
 }

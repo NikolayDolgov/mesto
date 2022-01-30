@@ -17,7 +17,6 @@
 /* popup */
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/__container/popup__container.css);
-@import url(../blocks/popup/__container/_hidden/popup__container_hidden.css);
 @import url(../blocks/popup/__close/popup__close.css);
 @import url(../blocks/popup/_task/popup_task_change.css);
 @import url(../blocks/popup/_task/popup_task_add.css);

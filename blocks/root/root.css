@@ -1,5 +1,6 @@
 .root {
-  position: relative; /* для form */
+  position: relative; /* для popup */
+  min-height: 100vh;
   min-width: 320px;
   margin: 0 auto;
   background: #000;
