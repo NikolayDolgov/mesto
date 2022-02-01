@@ -1,4 +1,4 @@
-.popup_task_change {
+.popup_task_change-name {
   visibility: hidden;
   opacity: 0;
   transition: visibility 0.5s, opacity 0.5s linear;

@@ -1,4 +1,4 @@
-.form-card {
+.popup__form {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -7,17 +7,17 @@
   background: #FFF;
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
-  z-index: 1;
+  z-index: 2;
 }
-
+  
 @media all and (max-width: 845px) {
-  .form-card {
-   min-width: 282px;
+  .popup__form {
+    min-width: 282px;
   }
 }
-
+  
 @media all and (max-width: 475px) {
-  .form-card {
+  .popup__form {
     width: 92vw;
   }
 }
