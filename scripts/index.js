@@ -11,15 +11,17 @@ const profileDescription = profileInfo.querySelector('.profile__text');
 const cardContainer = document.querySelector('.elements');
 
 // попап изменения
-const popupChangeName = document.querySelector('.popup_task_change-name');
-const popupChangeNameClose = popupChangeName.querySelector('.popup__close');
+const popupChangeProfile = document.querySelector('.popup_task_change-profile');
+const popupChangeProfileClose = popupChangeProfile.querySelector('.popup__close');
+const buttonChangeProfileClear = popupChangeProfile.querySelector('#change-profile');
 // поля ввода
-const inputName = popupChangeName.querySelector('#name');
-const inputDescription = popupChangeName.querySelector('#description');
+const inputName = popupChangeProfile.querySelector('#name');
+const inputDescription = popupChangeProfile.querySelector('#description');
 
 // попап добавления
 const popupAdd = document.querySelector('.popup_task_add');
 const popupAddClose = popupAdd.querySelector('.popup__close');
+const buttonAddClear = popupAdd.querySelector('#add-card');
 const inputPlace = popupAdd.querySelector('#place-card');
 const inputLink = popupAdd.querySelector('#link-card');
 // получаем селекторы для заполнения листа
@@ -60,12 +62,11 @@ const initialCards = [
 //---------//
 // функции //
 //---------//
-const createCard = { // метод создания карточки
-  // cardElement - карточка
-  // cardName - название карточки
-  // cardLink - ссылка на карточку
-  // card - результат выполнения
-  create: function(cardElement, cardName, cardLink) {
+// cardElement - карточка
+// cardName - название карточки
+// cardLink - ссылка на карточку
+// card - результат выполнения
+function createCard (cardElement, cardName, cardLink) {
   const  card = cardElement.querySelector('.elements__element').cloneNode(true);
   card.querySelector('.elements__img').src = cardLink;
   card.querySelector('.elements__img').alt = cardName;
@@ -77,9 +78,8 @@ const createCard = { // метод создания карточки
     eventTarget.classList.toggle('elements__element_active');
   });
 
-  card.querySelector('.elements__button-delete').addEventListener('click', function (evt) { // обработчик удаления
-    const eventTarget = evt.target;
-    eventTarget.closest('.elements__element').remove();
+  card.querySelector('.elements__button-delete').addEventListener('click', function () { // обработчик удаления
+    card.remove();
   });
 
   card.querySelector('.elements__img').addEventListener('click', function (evt) { // обработчик открытия img карточки
@@ -88,19 +88,18 @@ const createCard = { // метод создания карточки
   });
 
   return card;
-  }
-};
+}
 
 function openPopup(popup) { // открытие попап
   popup.classList.add('popup_opened');
 }
 
 function openPropfilePopup() { // Функция вызова PropfilePopup
-  // заполняем value
-  inputName.value = profileName.textContent;
-  inputDescription.value = profileDescription.textContent;
+  // заполняем placeholder
+  inputName.placeholder = profileName.textContent;
+  inputDescription.placeholder = profileDescription.textContent;
 
-  openPopup(popupChangeName); // открываем попап
+  openPopup(popupChangeProfile); // открываем попап
 }
 
 function openImgPopup(eventTarget) { // Функция вызова ImgPopup
@@ -118,17 +117,18 @@ function formChangeNameSubmitHandler(evt) { // Функция перезапис
   // Перезапись атрибута textContent
   profileName.textContent = inputName.value;
   profileDescription.textContent = inputDescription.value;
-  closePopup(popupChangeName);
+  closePopup(popupChangeProfile);
+  buttonChangeProfileClear.reset();
 }
 
 function formAddCardSubmitHandler(evt) { // Функция добавления карточки
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
   // вызываем метод создания карточки
-  cardContainer.prepend(createCard.create(elementTemplate, inputPlace.value, inputLink.value));
+  cardContainer.prepend(createCard(elementTemplate, inputPlace.value, inputLink.value));
   // закрываем форму
   closePopup(popupAdd);
   // очистка формы
-  document.getElementById('add-card').reset();
+  buttonAddClear.reset();
 }
 
 function closePopup(popup) { // закрытие попап
@@ -139,8 +139,8 @@ function closePopup(popup) { // закрытие попап
 // обработчики //
 //-------------//
 // записываем объекты массива в DOM
-Array.from(initialCards).forEach((item) => {
-  cardContainer.append(createCard.create(elementTemplate, item.name, item.link));
+initialCards.forEach((item) => {
+  cardContainer.append(createCard(elementTemplate, item.name, item.link));
 });
 
 buttonProfileInfo.addEventListener('click', function() {  // обаботчик изменения имени/должности
@@ -152,12 +152,12 @@ buttonAddCard.addEventListener('click', function() { // обаботчик до�
 });
 
 // обработчики форм
-popupChangeName.querySelector('.popup__form').addEventListener('submit', formChangeNameSubmitHandler);
+popupChangeProfile.querySelector('.popup__form').addEventListener('submit', formChangeNameSubmitHandler);
 popupAdd.querySelector('.popup__form').addEventListener('submit', formAddCardSubmitHandler);
 
 // закрытие попап
-popupChangeNameClose.addEventListener('click', function() {
-  closePopup(popupChangeName)
+popupChangeProfileClose.addEventListener('click', function() {
+  closePopup(popupChangeProfile)
 });
 
 popupAddClose.addEventListener('click', function() {
