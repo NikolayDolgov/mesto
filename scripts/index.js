@@ -13,7 +13,6 @@ const cardContainer = document.querySelector('.elements');
 // попап изменения
 const popupChangeProfile = document.querySelector('.popup_task_change-profile');
 const popupChangeProfileClose = popupChangeProfile.querySelector('.popup__close');
-const buttonChangeProfileClear = popupChangeProfile.querySelector('#change-profile');
 // поля ввода
 const inputName = popupChangeProfile.querySelector('#name');
 const inputDescription = popupChangeProfile.querySelector('#description');
@@ -21,7 +20,6 @@ const inputDescription = popupChangeProfile.querySelector('#description');
 // попап добавления
 const popupAdd = document.querySelector('.popup_task_add');
 const popupAddClose = popupAdd.querySelector('.popup__close');
-const buttonAddClear = popupAdd.querySelector('#add-card');
 const inputPlace = popupAdd.querySelector('#place-card');
 const inputLink = popupAdd.querySelector('#link-card');
 // получаем селекторы для заполнения листа
@@ -95,9 +93,9 @@ function openPopup(popup) { // открытие попап
 }
 
 function openPropfilePopup() { // Функция вызова PropfilePopup
-  // заполняем placeholder
-  inputName.placeholder = profileName.textContent;
-  inputDescription.placeholder = profileDescription.textContent;
+  // заполняем value
+  inputName.value = profileName.textContent;
+  inputDescription.value = profileDescription.textContent;
 
   openPopup(popupChangeProfile); // открываем попап
 }
@@ -118,7 +116,6 @@ function formChangeNameSubmitHandler(evt) { // Функция перезапис
   profileName.textContent = inputName.value;
   profileDescription.textContent = inputDescription.value;
   closePopup(popupChangeProfile);
-  buttonChangeProfileClear.reset();
 }
 
 function formAddCardSubmitHandler(evt) { // Функция добавления карточки
@@ -128,7 +125,7 @@ function formAddCardSubmitHandler(evt) { // Функция добавления 
   // закрываем форму
   closePopup(popupAdd);
   // очистка формы
-  buttonAddClear.reset();
+  popupAdd.querySelector('#add-card').reset();
 }
 
 function closePopup(popup) { // закрытие попап
