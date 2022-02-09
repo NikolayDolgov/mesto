@@ -10,6 +10,11 @@ const profileDescription = profileInfo.querySelector('.profile__text');
 // для elements
 const cardContainer = document.querySelector('.elements');
 
+// валидация //
+// Вынесем все необходимые элементы формы в константы
+const popupForm = document.querySelector('.popup__form');
+const formInput = popupForm.querySelector('.popup__input');
+
 // попап изменения
 const popupChangeProfile = document.querySelector('.popup_task_change-profile');
 const popupChangeProfileClose = popupChangeProfile.querySelector('.popup__close');
@@ -128,6 +133,38 @@ function formAddCardSubmitHandler(evt) { // Функция добавления 
   popupAdd.querySelector('#add-card').reset();
 }
 
+/// валидация ///
+// Функция, которая добавляет класс с ошибкой
+const showInputError = (popupForm, formInput, errorMessage) => {
+  // Находим элемент ошибки внутри самой функции
+  const formError = popupForm.querySelector(`.${formInput.id}-input-error`);
+  element.classList.add('popup__input_type_error');//?
+  // Заменим содержимое span с ошибкой на переданный параметр
+  formError.textContent = errorMessage;
+  // Показываем сообщение об ошибке
+  formError.classList.add('popup__input-error_active');
+};
+
+// Функция, которая удаляет класс с ошибкой
+const hideInputError = (popupForm, formInput) => {
+  element.classList.remove('popup__input_type_error');
+  
+  formError.classList.remove('popup__input-error_active');
+  // Очистим ошибку
+  formError.textContent = '';
+};
+
+// Функция, которая проверяет валидность поля
+const isValid = (popupForm, formInput) => {
+  if (!formInput.validity.valid) {
+    // Если поле не проходит валидацию, покажем ошибку
+    showInputError(popupForm, formInput, formInput.validationMessage);
+  } else {
+    // Если проходит, скроем
+    hideInputError(popupForm, formInput);
+  }
+};
+
 function closePopup(popup) { // закрытие попап
   popup.classList.remove('popup_opened');
 }
@@ -149,6 +186,12 @@ buttonAddCard.addEventListener('click', function() { // обаботчик до�
 });
 
 // обработчики форм
+// Вызовем функцию isValid на каждый ввод символа
+formInput.addEventListener('input',  function() {
+  console.log("work");
+  isValid();
+}); 
+
 popupChangeProfile.querySelector('.popup__form').addEventListener('submit', formChangeNameSubmitHandler);
 popupAdd.querySelector('.popup__form').addEventListener('submit', formAddCardSubmitHandler);
 

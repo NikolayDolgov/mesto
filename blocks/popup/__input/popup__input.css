@@ -2,6 +2,7 @@
   width: 358px;
   height: 27px;
   margin: 30px 0 0;
+  outline: none;
   padding: 0;
   border: 0;
   border-bottom: 1px solid rgba(0, 0, 0, .2);
@@ -23,6 +24,20 @@
   line-height: 17px;
   color: #C4C4C4;
 }
+
+.popup__input:focus {
+  outline: 1px solid blue; /* заменить */
+}
+
+/*
+
+.popup__input:invalid {
+  border: 1px solid rgba(255, 0, 0, .8); /* поменять*/
+/*} 
+
+/*.popup__input:valid {
+  border: 1px solid blue; 
+}*/
 
 @media all and (max-width: 845px) {
   .popup__input {
