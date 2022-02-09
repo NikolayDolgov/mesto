@@ -138,7 +138,7 @@ function formAddCardSubmitHandler(evt) { // Функция добавления 
 const showInputError = (popupForm, formInput, errorMessage) => {
   // Находим элемент ошибки внутри самой функции
   const formError = popupForm.querySelector(`.${formInput.id}-input-error`);
-  element.classList.add('popup__input_type_error');//?
+  formInput.classList.add('popup__input_type_error');//?
   // Заменим содержимое span с ошибкой на переданный параметр
   formError.textContent = errorMessage;
   // Показываем сообщение об ошибке
@@ -147,7 +147,9 @@ const showInputError = (popupForm, formInput, errorMessage) => {
 
 // Функция, которая удаляет класс с ошибкой
 const hideInputError = (popupForm, formInput) => {
-  element.classList.remove('popup__input_type_error');
+  const formError = popupForm.querySelector(`.${formInput.id}-input-error`);
+  
+  formInput.classList.remove('popup__input_type_error');
   
   formError.classList.remove('popup__input-error_active');
   // Очистим ошибку
@@ -163,6 +165,22 @@ const isValid = (popupForm, formInput) => {
     // Если проходит, скроем
     hideInputError(popupForm, formInput);
   }
+};
+
+const setEventListeners = (formElement) => {
+  // Находим все поля внутри формы,
+  // сделаем из них массив методом Array.from
+  const inputList = Array.from(formElement.querySelectorAll('.form__input'));
+//
+  // Обойдём все элементы полученной коллекции
+  inputList.forEach((inputElement) => {
+    // каждому полю добавим обработчик события input
+    inputElement.addEventListener('input', () => {
+      // Внутри колбэка вызовем isValid,
+      // передав ей форму и проверяемый элемент
+      isValid(formElement, inputElement)
+    });
+  });
 };
 
 function closePopup(popup) { // закрытие попап
