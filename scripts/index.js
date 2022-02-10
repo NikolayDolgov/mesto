@@ -173,6 +173,8 @@ const setEventListeners = (formElement) => {
   // Находим все поля внутри формы,
   // сделаем из них массив методом Array.from
   const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
+  const buttonElement = formElement.querySelector('.popup__button');
+  
 
   // Обойдём все элементы полученной коллекции
   inputList.forEach((formInput) => {
@@ -180,13 +182,41 @@ const setEventListeners = (formElement) => {
     formInput.addEventListener('input', () => {
       // Внутри колбэка вызовем isValid,
       // передав ей форму и проверяемый элемент
-      isValid(formElement, formInput)
+      isValid(formElement, formInput);
+
+          // Вызовем toggleButtonState и передадим ей массив полей и кнопку
+  toggleButtonState(inputList, buttonElement);
+
     });
   });
 };
 
+const hasInvalidInput = (inputList) => { // Функция принимает массив полей
+  // проходим по этому массиву методом some
+  return inputList.some((inputElement) => {
+    console.log(inputElement);
+    console.log(!inputElement.validity.valid);
+    // Если поле не валидно, колбэк вернёт true
+    // Обход массива прекратится и вся фунцкция
+    // hasInvalidInput вернёт true
 
+    return !inputElement.validity.valid;
+  })
+};
 
+// Функция принимает массив полей ввода
+// и элемент кнопки, состояние которой нужно менять
+
+const toggleButtonState = (inputList, buttonElement) => {
+  // Если есть хотя бы один невалидный инпут
+  if (hasInvalidInput(inputList)) {
+    // сделай кнопку неактивной
+    buttonElement.classList.add('popup__button_inactive');
+  } else {
+    // иначе сделай кнопку активной
+    buttonElement.classList.remove('popup__button_inactive');
+  }
+};
 
 
 const enableValidation = () => {
