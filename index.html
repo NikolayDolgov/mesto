@@ -30,8 +30,10 @@
             <button type="button" aria-label="Закрыть" class="popup__close"></button>
             <form name="add-card" class="popup__form" id="add-card">
               <h2 class="popup__heading">Новое место</h2>
-              <input id="place-card" type="text" placeholder="Название" class="popup__input">
-              <input id="link-card" type="text" placeholder="Ссылка на картинку" class="popup__input">
+              <input id="place-card" type="text" placeholder="Название" class="popup__input" required>
+              <span class="popup__input-error place-card-input-error">Необходимо заполнить данное поле</span>
+              <input id="link-card" type="text" placeholder="Ссылка на картинку" class="popup__input" required>
+              <span class="popup__input-error link-card-input-error">Необходимо заполнить данное поле</span>
               <button type="submit" aria-label="Создать" class="popup__button">Создать</button>
             </form>
           </div>

@@ -29,16 +29,6 @@
   outline: 1px solid blue; /* заменить */
 }
 
-/*
-
-.popup__input:invalid {
-  border: 1px solid rgba(255, 0, 0, .8); /* поменять*/
-/*} 
-
-/*.popup__input:valid {
-  border: 1px solid blue; 
-}*/
-
 @media all and (max-width: 845px) {
   .popup__input {
     min-width: 238px;

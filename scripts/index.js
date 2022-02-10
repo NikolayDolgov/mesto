@@ -158,7 +158,9 @@ const hideInputError = (popupForm, formInput) => {
 
 // Функция, которая проверяет валидность поля
 const isValid = (popupForm, formInput) => {
+  console.log('work');
   if (!formInput.validity.valid) {
+    console.log('work');
     // Если поле не проходит валидацию, покажем ошибку
     showInputError(popupForm, formInput, formInput.validationMessage);
   } else {
@@ -170,18 +172,43 @@ const isValid = (popupForm, formInput) => {
 const setEventListeners = (formElement) => {
   // Находим все поля внутри формы,
   // сделаем из них массив методом Array.from
-  const inputList = Array.from(formElement.querySelectorAll('.form__input'));
-//
+  const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
+
   // Обойдём все элементы полученной коллекции
-  inputList.forEach((inputElement) => {
+  inputList.forEach((formInput) => {
     // каждому полю добавим обработчик события input
-    inputElement.addEventListener('input', () => {
+    formInput.addEventListener('input', () => {
       // Внутри колбэка вызовем isValid,
       // передав ей форму и проверяемый элемент
-      isValid(formElement, inputElement)
+      isValid(formElement, formInput)
     });
   });
 };
+
+
+
+
+
+const enableValidation = () => {
+  // Найдём все формы с указанным классом в DOM,
+  // сделаем из них массив методом Array.from
+  const formList = Array.from(document.querySelectorAll('.popup__form'));
+
+  // Переберём полученную коллекцию
+  formList.forEach((popupForm) => {
+    popupForm.addEventListener('submit', (evt) => {
+      // У каждой формы отменим стандартное поведение
+      evt.preventDefault();
+    });
+    
+    // Для каждой формы вызовем функцию setEventListeners,
+    // передав ей элемент формы
+    setEventListeners(popupForm);
+  });
+};
+
+// Вызовем функцию
+enableValidation();
 
 function closePopup(popup) { // закрытие попап
   popup.classList.remove('popup_opened');
@@ -205,10 +232,10 @@ buttonAddCard.addEventListener('click', function() { // обаботчик до�
 
 // обработчики форм
 // Вызовем функцию isValid на каждый ввод символа
-formInput.addEventListener('input',  function() {
+/*formInput.addEventListener('input',  function() {
   console.log("work");
   isValid();
-}); 
+}); */
 
 popupChangeProfile.querySelector('.popup__form').addEventListener('submit', formChangeNameSubmitHandler);
 popupAdd.querySelector('.popup__form').addEventListener('submit', formAddCardSubmitHandler);
