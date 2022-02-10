@@ -1,0 +1,24 @@
+.popup__input-error_type_description {
+  position: absolute;
+  left: auto;
+  right: auto;
+  top: 208px;
+}
+
+@media all and (max-width: 845px) {
+  .popup__input-error_type_description {
+    top: 209px;
+  }
+}
+
+@media all and (max-width: 425px) {
+  .popup__input-error_type_description {
+    top: 207px;
+  }
+}
+
+@media all and (max-width: 320px) {
+  .popup__input-error_type_description copy {
+    top: 213px;
+  }
+}

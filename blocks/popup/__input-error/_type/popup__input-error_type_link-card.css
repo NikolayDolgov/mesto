@@ -1,0 +1,24 @@
+.popup__input-error_type_link-card {
+  position: absolute;
+  left: auto;
+  right: auto;
+  top: 208px;
+}
+
+@media all and (max-width: 845px) {
+  .popup__input-error_type_link-card {
+    top: 209px;
+  }
+}
+
+@media all and (max-width: 425px) {
+  .popup__input-error_type_link-card {
+    top: 207px;
+  }
+}
+
+@media all and (max-width: 320px) {
+  .popup__input-error_type_link-card {
+    top: 213px;
+  }
+}

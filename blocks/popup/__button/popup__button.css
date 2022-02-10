@@ -16,6 +16,7 @@
 
 .popup__button:hover {
   opacity: 0.8;
+  cursor: pointer;
 }
 
 @media all and (max-width: 845px) {
