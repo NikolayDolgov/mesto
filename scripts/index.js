@@ -10,11 +10,6 @@ const profileDescription = profileInfo.querySelector('.profile__text');
 // для elements
 const cardContainer = document.querySelector('.elements');
 
-// валидация //
-// Вынесем все необходимые элементы формы в константы
-const popupForm = document.querySelector('.popup__form');
-const formInput = popupForm.querySelector('.popup__input');
-
 // попап изменения
 const popupChangeProfile = document.querySelector('.popup_task_change-profile');
 const popupChangeProfileClose = popupChangeProfile.querySelector('.popup__close');
@@ -33,6 +28,16 @@ const elementTemplate = document.querySelector('#element').content;
 // попап открытия
 const popupImg = document.querySelector('.popup_task_img');
 const popupImgClose = popupImg.querySelector('.popup__close');
+
+const validationSettings = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_inactive', // деактивация кнопки
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__input-error_active',
+  patternErrorClass: '.popup__input-error_type_' // шаблон ошибки
+}
 
 // массив карточек
 const initialCards = [
@@ -95,7 +100,12 @@ function createCard (cardElement, cardName, cardLink) {
 
 function openPopup(popup) { // открытие попап
   popup.classList.add('popup_opened');
-  enableValidation(); // валидация
+
+  // включение валидации вызовом enableValidation
+  // все настройки передаются при вызове 
+  enableValidation(validationSettings);
+
+  document.addEventListener('keydown', identifyButtonDown); // добавляем слушатель
 }
 
 function openPropfilePopup() { // Функция вызова PropfilePopup
@@ -134,109 +144,9 @@ function formAddCardSubmitHandler(evt) { // Функция добавления 
   popupAdd.querySelector('#add-card').reset();
 }
 
-/// валидация ///
-// Функция, которая добавляет класс с ошибкой
-const showInputError = (popupForm, formInput, errorMessage) => {
-  // Находим элемент ошибки внутри самой функции
-  const formError = popupForm.querySelector(`.popup__input-error_type_${formInput.id}`);
-  
-  formInput.classList.add('popup__input_type_error');//?
-  // Заменим содержимое span с ошибкой на переданный параметр
-  formError.textContent = errorMessage;
-  // Показываем сообщение об ошибке
-  formError.classList.add('popup__input-error_active');
-};
-
-// Функция, которая удаляет класс с ошибкой
-const hideInputError = (popupForm, formInput) => {
-  const formError = popupForm.querySelector(`.popup__input-error_type_${formInput.id}`);
-  formInput.classList.remove('popup__input_type_error');
-  
-  formError.classList.remove('popup__input-error_active');
-  // Очистим ошибку
-  formError.textContent = '';
-};
-
-// Функция, которая проверяет валидность поля
-const isValid = (popupForm, formInput) => {
-  if (!formInput.validity.valid) {
-    // Если поле не проходит валидацию, покажем ошибку
-    showInputError(popupForm, formInput, formInput.validationMessage);
-  } else {
-    // Если проходит, скроем
-    hideInputError(popupForm, formInput);
-  }
-};
-
-const setEventListeners = (formElement) => {
-  // Находим все поля внутри формы,
-  // сделаем из них массив методом Array.from
-  const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
-  const buttonElement = formElement.querySelector('.popup__button');
-  
-  // Вызовем toggleButtonState и передадим ей массив полей и кнопку
-  toggleButtonState(inputList, buttonElement);
-
-  // Обойдём все элементы полученной коллекции
-  inputList.forEach((formInput) => {
-    // каждому полю добавим обработчик события input
-    formInput.addEventListener('input', () => {
-      // Внутри колбэка вызовем isValid,
-      // передав ей форму и проверяемый элемент
-      isValid(formElement, formInput);
-
-      // Вызовем toggleButtonState и передадим ей массив полей и кнопку
-       toggleButtonState(inputList, buttonElement);
-    });
-  });
-};
-
-const hasInvalidInput = (inputList) => { // Функция принимает массив полей
-  // проходим по этому массиву методом some
-  return inputList.some((inputElement) => {
-    // Если поле не валидно, колбэк вернёт true
-    // Обход массива прекратится и вся фунцкция
-    // hasInvalidInput вернёт true
-    return !inputElement.validity.valid;
-  })
-};
-
-// Функция принимает массив полей ввода
-// и элемент кнопки, состояние которой нужно менять
-
-const toggleButtonState = (inputList, buttonElement) => {
-  // Если есть хотя бы один невалидный инпут
-  if (hasInvalidInput(inputList)) {
-    // сделай кнопку неактивной
-    buttonElement.classList.add('popup__button_inactive');
-  } else {
-    // иначе сделай кнопку активной
-    buttonElement.classList.remove('popup__button_inactive');
-  }
-};
-
-
-const enableValidation = () => {
-  // Найдём все формы с указанным классом в DOM,
-  // сделаем из них массив методом Array.from
-  const formList = Array.from(document.querySelectorAll('.popup__form'));
-
-  // Переберём полученную коллекцию
-  formList.forEach((popupForm) => {
-    popupForm.addEventListener('submit', (evt) => {
-      // У каждой формы отменим стандартное поведение
-      evt.preventDefault();
-    });
-    
-    // Для каждой формы вызовем функцию setEventListeners,
-    // передав ей элемент формы
-    setEventListeners(popupForm);
-  });
-};
-
-
 function closePopup(popup) { // закрытие попап
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', identifyButtonDown); // удаляем слушатель
 }
 
 const identifyClickPopup = (evt) => { // функция идентификации клика
@@ -247,6 +157,7 @@ const identifyClickPopup = (evt) => { // функция идентификаци
 
 const identifyButtonDown = (evt) => { // функция идентификации нажатия кнопки
   const popupButtonClose = document.querySelector('.popup_opened');
+  
   if(evt.key === 'Escape') { // закрываем если нажата Escape
     closePopup(popupButtonClose);
   }
@@ -287,10 +198,6 @@ popupImgClose.addEventListener('click', function() {
 });
 
 // закрытие попап на overlay
-
-popupChangeProfile.addEventListener('click', identifyClickPopup);
-popupAdd.addEventListener('click', identifyClickPopup);
-popupImg.addEventListener('click', identifyClickPopup);
-
-//  закрытие попап на кнопку Escape
-document.addEventListener('keydown', identifyButtonDown);
+popupChangeProfile.addEventListener('mousedown', identifyClickPopup);
+popupAdd.addEventListener('mousedown', identifyClickPopup);
+popupImg.addEventListener('mousedown', identifyClickPopup);
