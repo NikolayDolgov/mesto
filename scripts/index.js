@@ -99,7 +99,6 @@ function createCard (cardElement, cardName, cardLink) {
 
 function openPopup(popup) { // открытие попап
   popup.classList.add('popup_opened');
-  document.addEventListener('keydown', identifyButtonDown); // добавляем слушатель
 }
 
 function openPropfilePopup() { // Функция вызова PropfilePopup
@@ -138,17 +137,15 @@ function sendFormAddCard(evt) { // Функция добавления карт�
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
   cardContainer.prepend(createCard(elementTemplate, inputPlace.value, inputLink.value)); // вызываем метод создания карточки
   closePopup(popupAdd);
-  // очистка формы
-  formAddCard.reset();
+  formAddCard.reset();// очистка формы
 }
-////**************************************************/////
+
 const closePopup = (popup) => { // закрытие попап
   popup.classList.remove('popup_opened');
   if(popup.classList.contains('popup_task_add')) // очищаем форму добавления картоки
     formAddCard.reset();
-  document.removeEventListener('keydown', identifyButtonDown); // удаляем слушатель
 }
-////**************************************************/////
+
 const identifyClickPopup = (evt) => { // функция идентификации клика
   if(evt.target === evt.currentTarget) { // закрываем если на overlay
     closePopup(evt.currentTarget);
@@ -172,6 +169,8 @@ const identifyButtonDown = (evt) => { // функция идентификаци
 initialCards.forEach((item) => {
   cardContainer.append(createCard(elementTemplate, item.name, item.link));
 });
+
+document.addEventListener('keydown', identifyButtonDown); // добавляем слушатель // как понял после первого ревью
 
 buttonProfileInfo.addEventListener('click', function() {  // обаботчик изменения имени/о себе
   openPropfilePopup()
