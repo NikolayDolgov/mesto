@@ -109,6 +109,7 @@ function openPropfilePopup() { // Функция вызова PropfilePopup
 
   openPopup(popupChangeProfile); // открываем попап
   doValidForm(popupChangeProfile);
+  hideErrorForm(popupChangeProfile);
 }
 
 function openAddCardPopup() { // Функция вызова addCardPopup
@@ -143,8 +144,6 @@ function sendFormAddCard(evt) { // Функция добавления карт�
 
 const closePopup = (popup) => { // закрытие попап
   popup.classList.remove('popup_opened');
-  if(popup.classList.contains('popup_task_add')) // очищаем форму добавления картоки
-    formAddCard.reset();
   document.removeEventListener('keydown', identifyButtonDown); // удаляем слушатель
 }
 
@@ -173,7 +172,7 @@ initialCards.forEach((item) => {
 });
 
 buttonProfileInfo.addEventListener('click', function() {  // обаботчик изменения имени/о себе
-  openPropfilePopup()
+  openPropfilePopup();
 });
 
 buttonAddCard.addEventListener('click', function() { // обаботчик добавления карточки

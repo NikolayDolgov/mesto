@@ -38,7 +38,7 @@ const setEventListeners = (formElement) => {
       isValid(formElement, formInput);
 
       // Вызовем toggleButtonState и передадим ей массив полей и кнопку
-       toggleButtonState(inputList, buttonElement);
+      toggleButtonState(inputList, buttonElement);
     });
   });
 };
@@ -50,9 +50,11 @@ const toggleButtonState = (inputList, buttonElement) => {
   if (hasInvalidInput(inputList)) {
     // сделай кнопку неактивной
     buttonElement.classList.add(validationSettings.inactiveButtonClass);
+    buttonElement.setAttribute("disabled", "disabled");
   } else {
     // иначе сделай кнопку активной
     buttonElement.classList.remove(validationSettings.inactiveButtonClass);
+    buttonElement.removeAttribute("disabled");
   }
 };
 
@@ -83,7 +85,7 @@ const hideInputError = (popupForm, formInput) => {
   const formError = popupForm.querySelector(`${validationSettings.patternErrorClass}${formInput.id}`);
   formInput.classList.remove(validationSettings.inputErrorClass);
   formError.classList.remove(validationSettings.errorClass);
-  formError.textContent = '';// Очистим ошибку
+  formError.textContent = ''; // Очистим ошибку
 };
 
 const hasInvalidInput = (inputList) => { // Функция принимает массив полей
@@ -98,24 +100,13 @@ const doValidForm = (popup) => { // проверка валидности фор
   const inputform = Array.from(formPopup.querySelectorAll(validationSettings.inputSelector));
   const buttonform = formPopup.querySelector(validationSettings.submitButtonSelector);
   toggleButtonState(inputform, buttonform); // проверяем кнопку
-  // проверяем input
-  if(inputform[0].value === '') { // для пустых input
-    doValidInputEmpty(formPopup, inputform);
-  }
-  else { // для заполненных input
-    doValidInputWithValue(formPopup, inputform);
-  }
 }
 
-const doValidInputWithValue = (formPopup, inputform) => { // для попап с заполненным input
-  inputform.forEach((input) => isValid(formPopup, input));// проверяем поля на валидность
-}
-
-const doValidInputEmpty = (formPopup, inputform) => { // вызывается при открытии попап с пустыми input
-  inputform.forEach((input) => { // проверяем поля на валидность
-    if (!input.validity.valid) {
-      hideInputError(formPopup, input); // Если поле не проходит валидацию скроем ошибку
-    } 
+const hideErrorForm = (popup) => { // скрытие ошибок у форм с всегда корректными значениями
+  const formPopup = popup.querySelector(validationSettings.formSelector);
+  const inputform = Array.from(formPopup.querySelectorAll(validationSettings.inputSelector));
+  inputform.forEach((input) => {
+    hideInputError(formPopup, input);
   });
 }
 
