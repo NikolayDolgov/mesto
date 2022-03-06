@@ -81,13 +81,16 @@ function openPropfilePopup() { // Функция вызова PropfilePopup
   inputDescription.value = profileDescription.textContent;
 
   openPopup(popupChangeProfile); // открываем попап
-  doValidForm(popupChangeProfile);
-  hideErrorForm(popupChangeProfile);
+  popupFormValidationTwo.doValidForm();
+  popupFormValidationTwo.hideErrorForm();
+  /*doValidForm(popupChangeProfile);
+  hideErrorForm(popupChangeProfile);*/
 }
 
 function openAddCardPopup() { // Функция вызова addCardPopup
   openPopup(popupAdd); // открываем попап
-  doValidForm(popupAdd);
+  popupFormValidationAdd.doValidForm();
+  /*doValidForm(popupAdd);*/
 }
 
 function openImgPopup(eventTarget) { // Функция вызова ImgPopup
@@ -143,7 +146,7 @@ const identifyButtonDown = (evt) => { // функция идентификаци
 // cardName - название карточки
 // cardLink - ссылка на карточку
 
-class CreateCard {
+class CreateCard { // заменить на Card
 	constructor(cardElement, cardName, cardLink) {
 		this._cardElement = cardElement;
 		this._cardName = cardName;
