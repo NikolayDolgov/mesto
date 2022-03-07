@@ -1,3 +1,9 @@
+//----------------------------//
+// Импорт из других JS файлов //
+//----------------------------//
+import {Card} from './Card.js';
+import {FormValidator} from './FormValidator.js';
+
 //---------------------------------------//
 // объявление и инициализация переменных //
 //---------------------------------------//
@@ -66,31 +72,34 @@ const initialCards = [
   }
 ];
 
+// объявим классы через заранее обозначенные переменные,
+// для дальнейшего использования в функциях
+const formValidationСhangeProfile = new FormValidator(validationSettings, popupChangeProfile);
+formValidationСhangeProfile.enableValidation();
+const formValidationAddCard = new FormValidator(validationSettings, popupAdd);
+formValidationAddCard.enableValidation();
+
 //---------//
 // функции //
 //---------//
-
-function openPopup(popup) { // открытие попап
-  popup.classList.add('popup_opened');
-  document.addEventListener('keydown', identifyButtonDown); // добавляем слушатель
-}
-
 function openPropfilePopup() { // Функция вызова PropfilePopup
   // заполняем value
   inputName.value = profileName.textContent;
   inputDescription.value = profileDescription.textContent;
 
   openPopup(popupChangeProfile); // открываем попап
-  popupFormValidationTwo.doValidForm();
-  popupFormValidationTwo.hideErrorForm();
-  /*doValidForm(popupChangeProfile);
-  hideErrorForm(popupChangeProfile);*/
+  formValidationСhangeProfile.toggleButtonState(); // проводим валидацию для кнопки
+  formValidationСhangeProfile.hideErrorForm(); // очищаем ошибки
 }
 
 function openAddCardPopup() { // Функция вызова addCardPopup
   openPopup(popupAdd); // открываем попап
-  popupFormValidationAdd.doValidForm();
-  /*doValidForm(popupAdd);*/
+  formValidationAddCard.toggleButtonState(); // проводим валидацию для кнопки
+}
+
+function openPopup(popup) { // открытие попап
+  popup.classList.add('popup_opened');
+  document.addEventListener('keydown', identifyButtonDown); // добавляем слушатель
 }
 
 function openImgPopup(eventTarget) { // Функция вызова ImgPopup
@@ -113,9 +122,7 @@ function sendFormChangeName(evt) { // Функция перезаписи profil
 
 function sendFormAddCard(evt) { // Функция добавления карточки
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-  const card = new CreateCard(elementTemplate, inputPlace.value, inputLink.value); // вызываем метод создания карточки
-	const cardElement = card.generate();
-  cardContainer.prepend(cardElement); // добавляем карточку в начало
+  cardContainer.prepend(createCard(elementTemplate, inputPlace.value, inputLink.value)); // добавляем карточку в начало
 
   closePopup(popupAdd);
   formAddCard.reset();// очистка формы
@@ -142,69 +149,17 @@ const identifyButtonDown = (evt) => { // функция идентификаци
   }
 }
 
-// cardElement - карточка
-// cardName - название карточки
-// cardLink - ссылка на карточку
-
-class CreateCard { // заменить на Card
-	constructor(cardElement, cardName, cardLink) {
-		this._cardElement = cardElement;
-		this._cardName = cardName;
-    this._cardLink = cardLink;
-	}
-
-  // приватные методы обработчиков
-  _likeCard() {
-    this._element.querySelector('.elements__button-view').addEventListener('click', function (evt) { // обработчик оценки
-      const eventTarget = evt.target;
-      eventTarget.classList.toggle('elements__element_active');
-    });
-    return this._element;
-  }
-
-  _removeCard() {
-    this._element.querySelector('.elements__button-delete').addEventListener('click', function (evt) { // обработчик удаления
-      const eventTarget = evt.target.closest('.elements__element');
-      eventTarget.remove();
-    });
-    return this._element;
-  }
-
-  _openCard() {
-    this._element.querySelector('.elements__img').addEventListener('click', function (evt) { // обработчик открытия img карточки
-      const eventTarget = evt.target;
-      openImgPopup(eventTarget);
-    });
-    return this._element;
-  }
-
-  // приватный метод, заполняет карточку данными
-  _getElement() {
-    const  card = this._cardElement.querySelector('.elements__element').cloneNode(true);
-    card.querySelector('.elements__img').src = this._cardLink;
-    card.querySelector('.elements__img').alt = this._cardName;
-    card.querySelector('.elements__text').textContent = this._cardName;
-    return card;
-  }
-
-  generate() {
-    this._element = this._getElement();
-
-    this._likeCard();
-    this._removeCard();
-    this._openCard();
-
-    return this._element;
-  }
+const createCard = (elementTemplate, name, link) => { // создание карточки
+  const card = new Card(elementTemplate, name, link);
+	return card.generate();
 }
+
 //-------------//
 // обработчики //
 //-------------//
 // записываем объекты массива в DOM
 initialCards.forEach((item) => {
-  const card = new CreateCard(elementTemplate, item.name, item.link);
-	const cardElement = card.generate();
-  cardContainer.append(cardElement);
+  cardContainer.append(createCard(elementTemplate, item.name, item.link));
 });
 
 buttonProfileInfo.addEventListener('click', function() {  // обаботчик изменения имени/о себе
@@ -223,3 +178,8 @@ popupAdd.querySelector('.popup__form').addEventListener('submit', sendFormAddCar
 popupChangeProfile.addEventListener('mousedown', identifyClickPopup);
 popupAdd.addEventListener('mousedown', identifyClickPopup);
 popupImg.addEventListener('mousedown', identifyClickPopup);
+
+//-----------------//
+// Экспорт функций //
+//-----------------//
+export {openImgPopup};
