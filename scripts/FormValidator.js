@@ -9,7 +9,9 @@ class FormValidator {
     this._patternErrorClass = validationSettings.patternErrorClass;
 
     this._popupForm = popupForm;
-	}
+    this._submitButton = this._popupForm.querySelector(this._submitButtonSelector);
+    this._inputList = Array.from(this._popupForm.querySelectorAll(this._inputSelector));
+  }
  
   _setEventListeners() {
     // Находим все поля внутри формы,
@@ -57,21 +59,19 @@ class FormValidator {
   }
 
   toggleButtonState() { // публичный метод, для использования при открытии поп-апа
-    const buttonElement = this._popupForm.querySelector(this._submitButtonSelector);
     if (this._hasInvalidInput()) {
       // сделай кнопку неактивной
-      buttonElement.classList.add(this._inactiveButtonClass);
-      buttonElement.setAttribute("disabled", "disabled");
+      this._submitButton.classList.add(this._inactiveButtonClass);
+      this._submitButton.setAttribute("disabled", "disabled");
     } else {
       // иначе сделай кнопку активной
-      buttonElement.classList.remove(this._inactiveButtonClass);
-      buttonElement.removeAttribute("disabled");
+      this._submitButton.classList.remove(this._inactiveButtonClass);
+      this._submitButton.removeAttribute("disabled");
     }
   }
 
   _hasInvalidInput() {
-    const inputList = Array.from(this._popupForm.querySelectorAll(this._inputSelector));
-    return inputList.some((inputElement) => {
+    return this._inputList.some((inputElement) => {
       return !inputElement.validity.valid;
     })
   }
@@ -83,8 +83,7 @@ class FormValidator {
 
   // публичный метод очистки ошибок при открытии поп-апа
   hideErrorForm() { // скрытие ошибок у форм с всегда корректными значениями
-    const inputform = Array.from(this._popupForm.querySelectorAll(this._inputSelector));
-    inputform.forEach((input) => {
+    this._inputList.forEach((input) => {
       this._hideInputError(input);
     });
   }

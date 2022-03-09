@@ -1,6 +1,7 @@
 //----------------------------//
 // Импорт из других JS файлов //
 //----------------------------//
+import {initialCards} from './initialCards.js';
 import {Card} from './Card.js';
 import {FormValidator} from './FormValidator.js';
 
@@ -26,8 +27,8 @@ const popupAdd = document.querySelector('.popup_task_add');
 const formAddCard = popupAdd.querySelector('#add-card')
 const inputPlace = popupAdd.querySelector('#place-card');
 const inputLink = popupAdd.querySelector('#link-card');
-// получаем селекторы для заполнения листа
-const elementTemplate = document.querySelector('#element').content;
+// селектор карточки
+const cardSelector = '#element';
 
 // попап открытия фото
 const popupImg = document.querySelector('.popup_task_img');
@@ -43,34 +44,6 @@ const validationSettings = {
   errorClass: 'popup__input-error_active',
   patternErrorClass: '.popup__input-error_type_' // шаблон ошибки
 }
-
-// массив карточек
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
 
 // объявим классы через заранее обозначенные переменные,
 // для дальнейшего использования в функциях
@@ -122,7 +95,7 @@ function sendFormChangeName(evt) { // Функция перезаписи profil
 
 function sendFormAddCard(evt) { // Функция добавления карточки
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-  cardContainer.prepend(createCard(elementTemplate, inputPlace.value, inputLink.value)); // добавляем карточку в начало
+  cardContainer.prepend(createCard(cardSelector, inputPlace.value, inputLink.value)); // добавляем карточку в начало
 
   closePopup(popupAdd);
   formAddCard.reset();// очистка формы
@@ -149,8 +122,8 @@ const identifyButtonDown = (evt) => { // функция идентификаци
   }
 }
 
-const createCard = (elementTemplate, name, link) => { // создание карточки
-  const card = new Card(elementTemplate, name, link);
+const createCard = (cardSelector, name, link) => { // создание карточки
+  const card = new Card(cardSelector, name, link);
 	return card.generate();
 }
 
@@ -159,7 +132,7 @@ const createCard = (elementTemplate, name, link) => { // создание кар
 //-------------//
 // записываем объекты массива в DOM
 initialCards.forEach((item) => {
-  cardContainer.append(createCard(elementTemplate, item.name, item.link));
+  cardContainer.append(createCard(cardSelector, item.name, item.link));
 });
 
 buttonProfileInfo.addEventListener('click', function() {  // обаботчик изменения имени/о себе

@@ -7,45 +7,50 @@ import {openImgPopup} from './index.js';
 // Классы //
 //--------//
 
-// cardElement - карточка
+// cardSelector - селектор темплэйт элемента
 // cardName - название карточки
 // cardLink - ссылка на карточку
 
 class Card {
-	constructor(cardElement, cardName, cardLink) {
-		this._cardElement = cardElement;
+	constructor(cardSelector, cardName, cardLink) {
+    this._cardTemplate = document.querySelector(cardSelector).content;
 		this._cardName = cardName;
     this._cardLink = cardLink;
 	}
 
   // приватные методы обработчиков
   _likeCard() {
-    this._element.querySelector('.elements__button-view').addEventListener('click', function (evt) { // обработчик оценки
-      const eventTarget = evt.target;
-      eventTarget.classList.toggle('elements__element_active');
-    });
-    return this._element;
+    this._element.querySelector('.elements__button-view').classList.toggle('elements__element_active');
   }
 
   _removeCard() {
-    this._element.querySelector('.elements__button-delete').addEventListener('click', function (evt) { // обработчик удаления
-      const eventTarget = evt.target.closest('.elements__element');
-      eventTarget.remove();
-    });
-    return this._element;
+    this._element.remove();
   }
 
   _openCard() {
-    this._element.querySelector('.elements__img').addEventListener('click', function (evt) { // обработчик открытия img карточки
-      const eventTarget = evt.target;
-      openImgPopup(eventTarget);
+    openImgPopup(this._element.querySelector('.elements__img'));
+  }
+
+  // навешивание обработчиков
+  _addListeners() {
+    this._element.querySelector('.elements__button-view').addEventListener('click', () => {
+      this._likeCard();
     });
+
+    this._element.querySelector('.elements__img').addEventListener('click', () => {
+      this._openCard();
+    });
+
+    this._element.querySelector('.elements__button-delete').addEventListener('click', () => {
+      this._removeCard();
+    });
+
     return this._element;
   }
 
   // приватный метод, заполняет карточку данными
   _getElement() {
-    const  card = this._cardElement.querySelector('.elements__element').cloneNode(true);
+    const  card = this._cardTemplate.querySelector('.elements__element').cloneNode(true);
     card.querySelector('.elements__img').src = this._cardLink;
     card.querySelector('.elements__img').alt = this._cardName;
     card.querySelector('.elements__text').textContent = this._cardName;
@@ -56,9 +61,7 @@ class Card {
   generate() {
     this._element = this._getElement();
 
-    this._likeCard();
-    this._removeCard();
-    this._openCard();
+    this._addListeners();
 
     return this._element;
   }
