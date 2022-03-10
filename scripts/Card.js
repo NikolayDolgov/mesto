@@ -20,7 +20,7 @@ class Card {
 
   // приватные методы обработчиков
   _likeCard() {
-    this._element.querySelector('.elements__button-view').classList.toggle('elements__element_active');
+    this._elementLike.classList.toggle('elements__element_active');
   }
 
   _removeCard() {
@@ -28,12 +28,12 @@ class Card {
   }
 
   _openCard() {
-    openImgPopup(this._element.querySelector('.elements__img'));
+    openImgPopup(this._cardName, this._cardLink);
   }
 
   // навешивание обработчиков
   _addListeners() {
-    this._element.querySelector('.elements__button-view').addEventListener('click', () => {
+    this._elementLike.addEventListener('click', () => {
       this._likeCard();
     });
 
@@ -60,6 +60,7 @@ class Card {
   // публичный метод, создание карточки
   generate() {
     this._element = this._getElement();
+    this._elementLike = this._element.querySelector('.elements__button-view');
 
     this._addListeners();
 

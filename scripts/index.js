@@ -68,18 +68,18 @@ function openPropfilePopup() { // Функция вызова PropfilePopup
 function openAddCardPopup() { // Функция вызова addCardPopup
   openPopup(popupAdd); // открываем попап
   formValidationAddCard.toggleButtonState(); // проводим валидацию для кнопки
-}
+} //!!! ревью от другого проверяющего не рекомендовало использовать здесь очистку ошибок
 
 function openPopup(popup) { // открытие попап
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', identifyButtonDown); // добавляем слушатель
 }
 
-function openImgPopup(eventTarget) { // Функция вызова ImgPopup
+function openImgPopup(cardName, cardLink) { // Функция вызова ImgPopup
   // записываем переменные в img
-  figureImgData.src = eventTarget.src;
-  figureImgData.alt = eventTarget.alt;
-  figureCaption.textContent = eventTarget.alt;
+  figureImgData.src = cardLink;
+  figureImgData.alt = cardName;
+  figureCaption.textContent = cardName;
   
   openPopup(popupImg); // открываем попап
 }
