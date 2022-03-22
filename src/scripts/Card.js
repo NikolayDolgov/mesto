@@ -1,21 +1,13 @@
-//----------------------------//
-// Импорт из других JS файлов //
-//----------------------------//
-import {openImgPopup} from './index.js';
-
 //--------//
 // Классы //
 //--------//
 
-// cardSelector - селектор темплэйт элемента
-// cardName - название карточки
-// cardLink - ссылка на карточку
-
 class Card {
-	constructor(cardSelector, cardName, cardLink) {
+	constructor(cardSelector, cardName, cardLink, handleCardClick) {
     this._cardTemplate = document.querySelector(cardSelector).content;
 		this._cardName = cardName;
     this._cardLink = cardLink;
+    this._handleCardClick = handleCardClick;
 	}
 
   // приватные методы обработчиков
@@ -28,7 +20,7 @@ class Card {
   }
 
   _openCard() {
-    openImgPopup(this._cardName, this._cardLink);
+    this._handleCardClick();
   }
 
   // навешивание обработчиков

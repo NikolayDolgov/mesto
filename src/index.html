@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
   <head>
-    <link rel="stylesheet" href="./pages/index.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Место</title>
@@ -48,7 +47,7 @@
           </div>
         </section>
         <section class="profile">
-          <img src="./images/avatar.png" alt="Аватар" class="profile__avatar">
+          <img src="<%=require('./images/avatar.png')%>" alt="Аватар" class="profile__avatar">
           <div class="profile__profile-info">
             <h1 class="profile__title-name">Жак-Ив Кусто</h1>
             <button type="button" aria-label="Изменить" class="profile__button-name"></button>
@@ -76,6 +75,5 @@
         </div>
       </li>
     </template>
-    <script type="module" src="./scripts/index.js"></script>
   </body>
 </html>
