@@ -1,8 +1,3 @@
-//----------------------------//
-// Импорт из других JS файлов //
-//----------------------------//
-import {formValidationAddCard, formValidationСhangeProfile} from '../index.js';
-
 //--------//
 // Классы //
 //--------//
@@ -16,9 +11,7 @@ class Popup {
 	open() {
 		this.popupElement.classList.add('popup_opened');
     this._handleEscClose();
-    this.setEventListeners()
-    formValidationAddCard.toggleButtonState(); // проводим валидацию для кнопки
-    formValidationСhangeProfile.toggleButtonState(); // проводим валидацию для кнопки
+    this.setEventListeners();
 	}
 
   _handleEscClose() {

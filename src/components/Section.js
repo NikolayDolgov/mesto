@@ -1,7 +1,7 @@
 //----------------------------//
 // Импорт из других JS файлов //
 //----------------------------//
-import {cardSelector} from '../index.js';
+//import {cardSelector} from '../index.js';
 
 //--------//
 // Классы //
@@ -17,7 +17,7 @@ class Section {
 
 	renderingAllItems() {
 		this._items.forEach((item) => {
-			this.cardContainer.append(this._renderer(cardSelector, item.name, item.link));
+			this.cardContainer.append(this._renderer(item.name, item.link));
 		});
 	}
 

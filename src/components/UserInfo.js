@@ -13,14 +13,17 @@ class UserInfo {
 
   getUserInfo() {
   
-    const inputName = document.querySelector('#name');
+    /*const inputName = document.querySelector('#name');
     const inputDescription = document.querySelector('#description');
-
-    inputName.value = this.profileName.textContent;
+*/
+   /* inputName.value = this.profileName.textContent;
     inputDescription.value = this.profileDescription.textContent;
-    this.profileValues = [inputName.value, inputDescription.value];
+    this.profileValues = [inputName.value, inputDescription.value];*/
     
-    return this.profileValues;
+    //return this.profileValues;
+    return {
+      name: this.profileName.textContent, 
+      description: this.profileDescription.textContent}
   }
 
   setUserInfo(inputName, inputDescription) {

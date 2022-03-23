@@ -18,16 +18,15 @@ class PopupWithImage extends Popup {
 		this.figureCaption = this.popupElement.querySelector('.figure__caption');
 	}
 
-	open() {
-		this.figureImgData.src = event.target.src;
+	open(item, link) {
+		super.open();
+		/*this.figureImgData.src = event.target.src;
 		this.figureImgData.alt = event.target.alt;
-		this.figureCaption.textContent = event.target.alt;
-		this.popupElement.classList.add('popup_opened');
-    this._handleEscClose();
-    this.setEventListeners()
-    
+		this.figureCaption.textContent = event.target.alt;*/
+		this.figureImgData.src = link;
+		this.figureImgData.alt = item;
+		this.figureCaption.textContent = item;
 	}
-
 }
 
 //---------//

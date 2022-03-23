@@ -22,8 +22,8 @@ class FormValidator {
         // передав ей форму и проверяемый элемент
         this._isValid(formInput);
         
-        // Вызовем toggleButtonState и передадим ей массив полей и кнопку
-        this.toggleButtonState();
+        // Вызовем _toggleButtonState и передадим ей массив полей и кнопку
+        this._toggleButtonState();
       });
     });
   }; 
@@ -54,7 +54,7 @@ class FormValidator {
     formError.textContent = ''; // Очистим ошибку
   }
 
-  toggleButtonState() { // публичный метод, для использования при открытии поп-апа
+  _toggleButtonState() {
     if (this._hasInvalidInput()) {
       // сделай кнопку неактивной
       this._submitButton.classList.add(this._inactiveButtonClass);
@@ -77,9 +77,9 @@ class FormValidator {
     this._setEventListeners();
   }
 
-  // публичный метод очистки ошибок при открытии поп-апа
-  hideErrorForm() { // скрытие ошибок у форм с всегда корректными значениями
-    this._inputList.forEach((input) => {
+  resetValidation() {
+    this._toggleButtonState(); // деактивация/активация кнопки
+    this._inputList.forEach((input) => { // проверка на наличие ошибок
       this._hideInputError(input);
     });
   }
