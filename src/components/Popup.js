@@ -11,7 +11,7 @@ class Popup {
 	open() {
 		this.popupElement.classList.add('popup_opened');
     this._handleEscClose();
-    this.setEventListeners();
+    //this.setEventListeners();
 	}
 
   _handleEscClose() {

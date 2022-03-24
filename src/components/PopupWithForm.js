@@ -12,8 +12,8 @@ class PopupWithForm extends Popup {
 	constructor(popupSelector, callBack) {
     super(popupSelector);
 		this._popupSelector = popupSelector;
-    //this.popupElement = document.querySelector(this._popupSelector);
-		this.inputs = this.popupElement.querySelectorAll('.popup__input');
+    this.popupForm = this.popupElement.querySelector('.popup__form');
+		this.inputs = this.popupForm.querySelectorAll('.popup__input');
 		this.callBack = callBack;
 
 		this.submit = (evt) => {
@@ -21,9 +21,6 @@ class PopupWithForm extends Popup {
 			const inputsValueArray = this._getInputValues();
 			this.callBack(inputsValueArray[0], inputsValueArray[1]);
 		}
-
-		this.formAddCard = this.popupElement.querySelector('#add-card');
-		this.formChangeProfile = this.popupElement.querySelector('#change-profile');
 	}
 
 	_getInputValues() {
@@ -34,18 +31,12 @@ class PopupWithForm extends Popup {
 	setEventListeners() {
 		super.setEventListeners();
 		// обработчики форм submit
-		this.popupElement.querySelector('.popup__form').addEventListener('submit', this.submit);
-	
+		this.popupForm.addEventListener('submit', this.submit);
 	}
+
 	close() {
 		super.close();
-		this.popupElement.querySelector('.popup__form').removeEventListener('submit', this.submit);
-		if('.popup_task_add' == this._popupSelector) {
-			this.formAddCard.reset(); // сбрасываем форму
-		}
-		if('.popup_task_change-profile' == this._popupSelector) {
-			this.formChangeProfile.reset(); // сбрасываем форму
-		}
+		this.popupForm.reset(); // сбрасываем форму
 	}
 }
 

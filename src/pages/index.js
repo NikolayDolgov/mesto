@@ -66,7 +66,6 @@ const cardSection = new Section({initialCards, createCard}, containerSelector);
 // создадим экземпляры классов для всех поп-апов
 const popupAddNew = new PopupWithForm('.popup_task_add', sendFormAddCard);
 const popupChangeProfileNew = new PopupWithForm('.popup_task_change-profile', sendFormChangeName);
-//popupAddNew._getInputValues();
 const popupImg = new PopupWithImage('.popup_task_img');
 
 // объявим экземпляры классов для валидации поп-апов
@@ -79,6 +78,11 @@ const formValidationAddCard = new FormValidator(validationSettings, popupAdd);
 // активируем валидацию форм
 formValidationСhangeProfile.enableValidation();
 formValidationAddCard.enableValidation();
+
+// навешиваем обработчики на попапы
+popupAddNew.setEventListeners();
+popupChangeProfileNew.setEventListeners();
+popupImg.setEventListeners();
 
 // записываем объекты массива в DOM
 cardSection.renderingAllItems();
