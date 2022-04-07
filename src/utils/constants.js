@@ -5,11 +5,14 @@
 const buttonProfileInfo = document.querySelector('.profile__button-name');
 const buttonAddCard = document.querySelector('.profile__add-button');
 const profileData = {profileName: '.profile__title-name', profileDescription: '.profile__text'};
+const profileAvatar = document.querySelector('.profile__avatar-hover');
+const profileImg = document.querySelector('.profile__avatar');
 
-// попап изменения имени
+// попап изменения имени/аватара
 const popupChangeProfile = document.querySelector('.popup_task_change-profile');
 const inputName = popupChangeProfile.querySelector('#name');
 const inputDescription = popupChangeProfile.querySelector('#description');
+const popupAvatar = document.querySelector('.popup_task_update-avatar');
 
 // попап добавления карточки
 const popupAdd = document.querySelector('.popup_task_add');
@@ -59,6 +62,9 @@ export {
   buttonProfileInfo,
   buttonAddCard,
   profileData,
+  profileAvatar,
+  popupAvatar,
+  profileImg,
   popupChangeProfile,
   inputName,
   inputDescription,

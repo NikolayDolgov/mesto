@@ -7,25 +7,25 @@ import {Popup} from './Popup.js';
 // Классы //
 //--------//
 
-class PopupWithForm extends Popup {
-    
+class PopupUpdateAvatar extends Popup {
+
 	constructor(popupSelector, callBack) {
     super(popupSelector);
 		this._popupSelector = popupSelector;
     this.popupForm = this.popupElement.querySelector('.popup__form');
 		this.inputs = this.popupForm.querySelectorAll('.popup__input');
-		this.button = this.popupForm.querySelector('.popup__button');
 		this.callBack = callBack;
+		this.button = this.popupForm.querySelector('.popup__button');
 
 		this.submit = (evt) => {
 			evt.preventDefault();
 			const inputsValueArray = this._getInputValues();
-			this.callBack(inputsValueArray[0], inputsValueArray[1], this.button);
+			this.callBack(inputsValueArray[0], this.button);
 		}
 	}
 
 	_getInputValues() {
-		return [this.inputs[0].value, this.inputs[1].value];
+		return [this.inputs[0].value];
 	}
 
 	setEventListeners() {
@@ -44,4 +44,4 @@ class PopupWithForm extends Popup {
 // Экспорт //
 //---------//
 
-export {PopupWithForm}; 
+export {PopupUpdateAvatar}; 

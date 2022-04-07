@@ -1,0 +1,28 @@
+.profile__avatar-hover {
+  position: relative;
+  min-width: 120px;
+  max-width: 120px;
+  min-height: 120px;
+  max-height: 120px;
+  overflow: hidden;
+  border-radius: 50%;
+  background-size: cover;
+}
+
+.profile__avatar-hover:hover::before {
+  background: #C4C4C4;
+  background: rgba(0, 0, 0, 0.8);
+  background-image: url(../../../images/editr.svg);
+  
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.profile__avatar-hover::before {
+  position: absolute;
+  content: "";
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}

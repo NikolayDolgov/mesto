@@ -1,0 +1,24 @@
+.popup__input-error_type_link-avatar {
+  position: absolute;
+  left: auto;
+  right: auto;
+  top: 150px;
+}
+
+@media all and (max-width: 845px) {
+  .popup__input-error_type_link-avatar {
+    top: 151px;
+  }
+}
+
+@media all and (max-width: 425px) {
+  .popup__input-error_type_link-avatar {
+    top: 149px;
+  }
+}
+
+@media all and (max-width: 320px) {
+  .popup__input-error_type_link-avatar {
+    top: 155px;
+  }
+}
