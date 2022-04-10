@@ -19,13 +19,14 @@ class PopupWithForm extends Popup {
 
 		this.submit = (evt) => {
 			evt.preventDefault();
-			const inputsValueArray = this._getInputValues();
-			this.callBack(inputsValueArray[0], inputsValueArray[1], this.button);
+			this.callBack(this._getInputValues(), this.button);
 		}
 	}
 
 	_getInputValues() {
-		return [this.inputs[0].value, this.inputs[1].value];
+		this._formValues = {}
+		this.inputs.forEach(input => this._formValues[input.id] = input.value);
+		return this._formValues;
 	}
 
 	setEventListeners() {

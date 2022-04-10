@@ -7,7 +7,6 @@ import {buttonProfileInfo,
   profileData,
   profileAvatar,
   popupAvatar,
-  profileImg,
   popupChangeProfile,
   inputName,
   inputDescription,
@@ -27,18 +26,11 @@ import {PopupWithImage} from '../components/PopupWithImage.js';
 import {PopupWithForm} from '../components/PopupWithForm.js';
 import {FormValidator} from '../components/FormValidator.js';
 import {UserInfo} from '../components/UserInfo.js';
-import {Popup} from '../components/Popup';
 import {PopupDeleteCard} from '../components/PopupDeleteCard.js';
-import {PopupUpdateAvatar} from '../components/PopupUpdateAvatar.js';
 
 const userInfo = new UserInfo(profileData);
 
-let myId; // Id пользователя
-
-api.getUser()
-.then((user) => {
-  myId = user._id;
-});
+let myUserInfo; // Информация пользователя
 
 //api.updateAvatar("https://avatars.mds.yandex.net/i?id=ec7ac223d49401a92c770c31a79e9b64-5859525-images-thumbs&n=13");
 
@@ -53,45 +45,58 @@ function openPropfilePopup() { // Функция вызова PropfilePopup
   popupChangeProfileNew.open(); // открываем попап
 }
 
-const sendFormChangeName = (inputName, inputDescription, button) => { // Функция перезаписи profile__profile-info 
-  button.textContent = "Сохранение...";
-  userInfo.setUserInfo(inputName, inputDescription);
-  button.textContent = "Сохранить";
-  popupChangeProfileNew.close();
-}
-
-const sendFormUpdateAvatar = (link, button) => { // Функция перезаписи profile__profile-info 
-  button.textContent = "Обновление...";
-  api.updateAvatar(link)
-    .then(res => {
-      profileImg.src = link;
+const sendFormChangeName = (userData, button) => { // Функция перезаписи profile__profile-info 
+  api.putchtUser({name: userData.name, about: userData.description})
+    .then((res) => {//`res` - это ответ от сервера при успешном запросе, в котором чаще всего вся нужная информация для изменения DOM. Тут делаем все изменения DOM (лайки, удаления, добавления карточки, закрытия попапов и тд     )
+      button.textContent = "Сохранение...";
+      userInfo.getUserDOM(res);
+      popupChangeProfileNew.close();
     })
-  button.textContent = "Сохранить";
-  popupAvatarNew.close();
+    .catch((err) =>{ //обязательно ловим возможные ошибки в конце запроса )
+      console.log(err);
+    })
+    .finally(() => {//в этом блоке чаще всего изменяют текст кнопки и скрывают эффект загрузки)
+      button.textContent = "Сохранить";
+    });
 }
 
-const sendFormAddCard = (name, link, button) => { // Функция добавления карточки (submit)
-  button.textContent = "Создание...";
-  const cardElement = {name: name, link: link, likes: [], owner: {_id: myId}, _id: ""};
+const sendFormUpdateAvatar = (userData, button) => { // Функция перезаписи profile__profile-info 
+  api.updateAvatar(userData["link-avatar"])
+    .then((res) => {//`res` - это ответ от сервера при успешном запросе, в котором чаще всего вся нужная информация для изменения DOM. Тут делаем все изменения DOM (лайки, удаления, добавления карточки, закрытия попапов и тд     )
+      button.textContent = "Обновление...";
+      userInfo.getUserDOM(res);
+      popupAvatarNew.close();
+    })
+    .catch((err) =>{ //обязательно ловим возможные ошибки в конце запроса )
+      console.log(err);
+    })
+    .finally(() => {//в этом блоке чаще всего изменяют текст кнопки и скрывают эффект загрузки)
+      button.textContent = "Сохранить";
+    });
+}
+
+const sendFormAddCard = (cardData, button) => { // Функция добавления карточки (submit)
+  const cardElement = {name: cardData["place-card"], link: cardData["link-card"], likes: [], owner: {_id: myUserInfo._id}, _id: ""};
   api.postCard(cardElement)
-    .then(res => {
+    .then((res) => {//`res` - это ответ от сервера при успешном запросе, в котором чаще всего вся нужная информация для изменения DOM. Тут делаем все изменения DOM (лайки, удаления, добавления карточки, закрытия попапов и тд     )
+      button.textContent = "Создание...";
       cardElement.name = res.name;
       cardElement.link = res.link;
       cardElement.likes = res.likes;
       cardElement._id = res._id;
       cardElement.owner._id = res.owner._id;
-    }); // отправка на сервер
-  
-  cardSection.addItem(createCard(cardElement));
-    
-  //const card = {name: "Карта", link: "https://avatars.mds.yandex.net/i?id=ec7ac223d49401a92c770c31a79e9b64-5859525-images-thumbs&n=13"}
-  
-  button.textContent = "Создать";
-  popupAddNew.close();
+      cardSection.addItem(createCard(cardElement));
+      popupAddNew.close();
+    })
+    .catch((err) =>{ //обязательно ловим возможные ошибки в конце запроса )
+      console.log(err);
+    })
+    .finally(() => {//в этом блоке чаще всего изменяют текст кнопки и скрывают эффект загрузки)
+      button.textContent = "Создать";
+    });
 }
 
 const sendDeleteCard = (cardId, cardElement) => { // Функция удаления карточки (submit)
-  
   api.deleteCard(cardId); // отправка запроса на сервер
   cardElement.remove();
   popupImgDelete.close();
@@ -104,7 +109,7 @@ const createCard = (cardElement) => { // создание карточки
   const popupDeleteOpen = (cardId, cardElement) => { //кол-бэк удаления
     popupImgDelete.open(cardId, cardElement); // id только что созданной карточки не найдено
   }
-  const card = new Card('#element', myId, cardElement, popupImgOpen, popupDeleteOpen, api);
+  const card = new Card('#element', myUserInfo, cardElement, popupImgOpen, popupDeleteOpen, api);
 	return card.generate();
 }
 
@@ -118,9 +123,9 @@ const cardSection = new Section({initialCards, createCard}, containerSelector);
 // создадим экземпляры классов для всех поп-апов
 const popupAddNew = new PopupWithForm('.popup_task_add', sendFormAddCard);
 const popupChangeProfileNew = new PopupWithForm('.popup_task_change-profile', sendFormChangeName);
+const popupAvatarNew = new PopupWithForm('.popup_task_update-avatar', sendFormUpdateAvatar);
 const popupImg = new PopupWithImage('.popup_task_img');
 const popupImgDelete = new PopupDeleteCard('.popup_task_confirm-deletion', sendDeleteCard);
-const popupAvatarNew = new PopupUpdateAvatar('.popup_task_update-avatar', sendFormUpdateAvatar);
 
 // объявим экземпляры классов для валидации поп-апов
 const formValidationСhangeProfile = new FormValidator(validationSettings, popupChangeProfile);
@@ -142,17 +147,30 @@ popupImg.setEventListeners();
 popupImgDelete.setEventListeners();
 popupAvatarNew.setEventListeners();
 
-// записываем объекты массива в DOM
-//cardSection.renderingAllItems();
-api.getInitialCards()
-  .then((cards) => {
-    cards.forEach(cardElement => {
-      cardSection.addItem(createCard(cardElement));
-    });
+// записываем объекты в DOM
+// обновление профиля при ответе от сервера
+api.getUser()
+  .then((res) => {
+    // присваиваем полученные значения
+    userInfo.getUserDOM(res);
+  })
+  .catch((err) =>{ //обязательно ловим возможные ошибки в конце запроса)
+    console.log(err);
   });
 
-  const user = {name: "Имя", about: "О себе"}
-  api.putchtUser(user);
+// отрисовка карточек
+Promise.all([api.getUser(), api.getInitialCards()]) // не проверено
+  .then(([userData, cards]) => {
+      // тут установка данных пользователя
+      // и тут отрисовка карточек
+      myUserInfo = userData;
+      cards.forEach(cardElement => {
+        cardSection.addItem(createCard(cardElement));
+      });
+  })
+  .catch(err => {
+    // тут ловим ошибку
+  });
 
 buttonProfileInfo.addEventListener('click', function() {  // обаботчик изменения имени/о себе
   openPropfilePopup();

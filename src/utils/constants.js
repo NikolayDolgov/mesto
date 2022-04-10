@@ -4,9 +4,8 @@
 // изначальные переменные
 const buttonProfileInfo = document.querySelector('.profile__button-name');
 const buttonAddCard = document.querySelector('.profile__add-button');
-const profileData = {profileName: '.profile__title-name', profileDescription: '.profile__text'};
+const profileData = {profileName: '.profile__title-name', profileDescription: '.profile__text', profileAvatar: '.profile__avatar'};
 const profileAvatar = document.querySelector('.profile__avatar-hover');
-const profileImg = document.querySelector('.profile__avatar');
 
 // попап изменения имени/аватара
 const popupChangeProfile = document.querySelector('.popup_task_change-profile');
@@ -64,7 +63,6 @@ export {
   profileData,
   profileAvatar,
   popupAvatar,
-  profileImg,
   popupChangeProfile,
   inputName,
   inputDescription,
