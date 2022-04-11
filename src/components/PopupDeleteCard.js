@@ -17,7 +17,6 @@ class PopupDeleteCard extends Popup {
   open(cardId, cardElement) {
 		super.open();
 		this.cardId = cardId;
-		console.log(this.cardElement);
 		this.cardElement = cardElement;
 
 		this.popupElement.addEventListener('submit', (evt) => {
