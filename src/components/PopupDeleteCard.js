@@ -13,6 +13,8 @@ class PopupDeleteCard extends Popup {
     super(popupSelector);
 		this._popupSelector = popupSelector;
     this._sendDeleteCard = sendDeleteCard;
+		this.popupForm = this.popupElement.querySelector('.popup__form');
+		this.button = this.popupForm.querySelector('.popup__button');
 	}
   open(cardId, cardElement) {
 		super.open();
@@ -21,7 +23,7 @@ class PopupDeleteCard extends Popup {
 
 		this.popupElement.addEventListener('submit', (evt) => {
       evt.preventDefault();
-      this._sendDeleteCard(this.cardId, this.cardElement);
+      this._sendDeleteCard(this.cardId, this.cardElement, this.button);
     })
 	}
 }

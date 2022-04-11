@@ -96,14 +96,18 @@ const sendFormAddCard = (cardData, button) => { // Функция добавле
     });
 }
 
-const sendDeleteCard = (cardId, cardElement) => { // Функция удаления карточки (submit)
+const sendDeleteCard = (cardId, cardElement, button) => { // Функция удаления карточки (submit)
   api.deleteCard(cardId) // отправка запроса на сервер
     .then(() => {//`res` - это ответ от сервера при успешном запросе, в котором чаще всего вся нужная информация для изменения DOM. Тут делаем все изменения DOM (лайки, удаления, добавления карточки, закрытия попапов и тд)
+      button.textContent = "Удаление...";
       cardElement.remove();
       popupImgDelete.close();
     })
     .catch((err) =>{ //обязательно ловим возможные ошибки в конце запроса )
       console.log(err);
+    })
+    .finally(() => {//в этом блоке чаще всего изменяют текст кнопки и скрывают эффект загрузки)
+      button.textContent = "Да";
     });
 }
 
